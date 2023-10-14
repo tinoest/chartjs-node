@@ -1,0 +1,16 @@
+{
+  "name": "docker_chartjs",
+  "version": "1.0.0",
+  "description": "ChartJS and Node.js on Docker",
+  "author": "tinoest <tinoest@gmail.com>",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-basic-auth": "^1.2.1",
+    "chart.js": "^3.9.1",
+    "chartjs-node-canvas": "^4.1.6"
+  }
+}
