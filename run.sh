@@ -1,1 +1,1 @@
-docker run --rm -p 8080:8080 chartjs-node 
+docker run -d --rm -p 8080:8080 --name chartjs-node chartjs-node
