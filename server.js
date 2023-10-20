@@ -1,7 +1,6 @@
 'use strict';
 
-const { ChartJSNodeCanvas, ChartCallback } = require("chartjs-node-canvas");
-const { renderChartWithChartJS } = require("./generate-graph");
+const { ChartJSNodeCanvas } = require('chartjs-node-canvas');
 
 const express = require('express');
 const basicAuth = require('express-basic-auth');
@@ -19,16 +18,27 @@ app.use(basicAuth({
     users: { 'admin': 'supersecret' }
 }))
 
-app.post('/', (req, res) => {
+app.post('/', async (req, res) => {
 	const json = req.body;
-	var imgBuff = '';
 
-	renderChartWithChartJS(req.body).then(result => {
-		imgBuff = result.toString("base64");
-		res.send(`data:image/png;base64,${imgBuff}`);
-	}).catch(err => {
+	try {
+		const width = json.width;
+		const height = json.height;
+		const canvasRenderService = new ChartJSNodeCanvas({ width, height });
+
+		var options = json.options;
+		var data = json.data;
+
+		const image = await canvasRenderService.renderToBuffer({
+			type: json.type,
+			data,
+			options,
+		});
+		res.type('image/png');
+		res.send(image);
+	} catch (err) {
 		console.error("Failed to generate chart", err);
-  	});
+  	};
 });
 
 app.listen(PORT, HOST, () => {
