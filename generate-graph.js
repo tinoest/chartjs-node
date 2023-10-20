@@ -6,29 +6,14 @@ const height = 400;
 const canvasRenderService = new ChartJSNodeCanvas({ width, height });
 
 exports.renderChartWithChartJS = async (chartOption) => {
+  var options = chartOption.options;
   let configuration = {
     type: chartOption.type,
     data: {
       labels: chartOption.labels,
       datasets: [],
     },
-    options: {
-      plugins: {
-        title: {
-          display: true,
-          text: chartOption.title,
-        },
-      },
-      responsive: true,
-      scales: {
-        x: {
-          stacked: chartOption.stacked.x,
-        },
-        y: {
-          stacked: chartOption.stacked.y,
-        },
-      },
-    },
+    options,
   };
   chartOption.data.forEach((item) => {
     configuration.data.datasets.push({
