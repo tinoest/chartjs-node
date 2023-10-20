@@ -7,23 +7,12 @@ const canvasRenderService = new ChartJSNodeCanvas({ width, height });
 
 exports.renderChartWithChartJS = async (chartOption) => {
   var options = chartOption.options;
+  var data = chartOption.data;
   let configuration = {
     type: chartOption.type,
-    data: {
-      labels: chartOption.labels,
-      datasets: [],
-    },
+    data,
     options,
   };
-  chartOption.data.forEach((item) => {
-    configuration.data.datasets.push({
-      label: item.label,
-      backgroundColor: item.backgroundColor,
-      borderColor: item.borderColor,
-      borderWidth: 1,
-      data: item.data,
-    });
-  });
 
   //console.log(JSON.stringify(configuration, null, 2));
   const chartCallback = (ChartJS) => {

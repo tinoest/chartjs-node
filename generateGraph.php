@@ -5,12 +5,14 @@ $options	= ['plugins' => [ 'title' => [ 'display' => true, 'text' => $title ] ],
 
 $arr  = [ 
 	'type' => 'line', 
-	'labels' => [ '2017', '2018', '2019' ], 
 	'data' =>  [
+		'labels' => [ '2017', '2018', '2019' ],
+		'datasets' => [
 			[ 'label' => 'Birds', 'data' => [60, 40, 200], 'backgroundColor' => "rgba(255, 99, 132, 0.5)", 'borderColor' => "rgba(255, 99, 132, 0.5)"],
 			[ 'label' => 'Whales', 'data' => [70, 90, 100], 'backgroundColor' => "rgba(0, 99, 132, 0.5)", 'borderColor' => "rgba(0, 99, 132, 0.5)"],
 			[ 'label' => 'Lions', 'data' => [300, 200, 50], 'backgroundColor' => "rgba(255, 99, 0, 0.5)", 'borderColor' => "rgba(255, 99, 0, 0.5)"],
 		],
+	],
 	'options' => $options
 ];
 
@@ -23,12 +25,17 @@ $img = str_replace('data:image/png;base64,', '', $img);
 
 file_put_contents('image-line.png', base64_decode($img));
 
+$options	= ['plugins' => [ 'title' => [ 'display' => true, 'text' => $title ] ], 'responsive' => true, 'scales' => [ 'x' => [ 'stacked' => false ], 'y' => [ 'stacked' => false ] ] ];
+
 $arr  = [
 	'type' => 'bar', 
-	'labels' => [ '2017', '2018', '2019' ], 
 	'data' =>  [
-		[ 'label' => 'Birds', 'data' => [60, 40, 200], 'backgroundColor' => "rgba(255, 99, 132, 0.5)", 'borderColor' => "rgba(255, 99, 132, 0.5)" ],
-		[ 'label' => 'Animals', 'data' => [30, 10, 20], 'backgroundColor' => [ "rgba(0, 99, 132, 0.5)", "rgba(50, 99, 132, 0.5)", "rgba(100, 99, 132, 0.5)"], 'borderColor' => [ "rgba(0, 99, 132, 0.5)", "rgba(100, 99, 132, 0.5)", "rgba(50, 99, 132, 0.5)"] ],
+		'labels' => [ '2017', '2018', '2019' ],
+		'datasets' => [
+			[ 'label' => 'Birds', 'data' => [60, 40, 200], 'backgroundColor' => "rgba(255, 99, 132, 0.5)", 'borderColor' => "rgba(255, 99, 132, 0.5)" ],
+			[ 'label' => 'Animals', 'data' => [30, 10, 20], 'backgroundColor' => [ "rgba(0, 99, 132, 0.5)", "rgba(50, 99, 132, 0.5)", "rgba(100, 0, 132, 0.5)"], 'borderColor' => [ "rgba(0, 99, 132, 0.5)", "rgba(100, 99, 132, 0.5)", "rgba(50, 255, 132, 0.5)"] ],
+			[ 'label' => 'Fish', 'data' => [300, 200, 50], 'backgroundColor' => "rgba(255, 99, 0, 0.5)", 'borderColor' => "rgba(255, 99, 0, 0.5)"],
+		],
 	],
 	'options' => $options
 ];
